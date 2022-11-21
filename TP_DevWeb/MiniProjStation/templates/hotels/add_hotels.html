@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>ajouter un hotel</title>
+{% endblock %}
+
+{% block body %}
+  <h2>ajout d'un hotel</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/hotel/add" >
+
+        <legend> Créer un hotel</legend>
+
+
+        <label for="nomHotel">nomHotel</label><br>
+        <input id="nomHotel" type="text" name="nomHotel" size="18" value="" placeholder="Saisir le nom de l'hotel"><br>
+
+        <label for="nombreChambre">nombreChambre</label><br>
+        <input id="nombreChambre" type="number" name="nombreChambre" size="18" value="" placeholder="Saisir le nombre de chambre "><br>
+
+        <label for="categorie">categorie</label><br>
+
+
+
+        <select name="categorie"  required >
+
+            <option value="1"> cat 1</option>
+            <option value="2"> cat 2</option>
+            <option value="3"> cat 3</option>
+            <option value="4"> cat 4</option>
+            <option value="5"> cat 5</option>
+
+
+
+
+        </select>
+        <br>
+
+        <label for="prixBaseChambre">prixBaseChambre</label><br>
+        <input id="prixBaseChambre" type="text" name="prixBaseChambre" size="18" value="" placeholder="Saisir le prix de base d'une chambre"><br>
+
+        <label for="dateCreation">dateCreation</label><br>
+        <input id="dateCreation" type="date" name="dateCreation" size="18" value="" placeholder="Saisir la date de créations de l'hotel"><br>
+
+        <label for="station_id">station_id</label><br>
+        <select name="station_id" required>
+            {% for station in stations %}
+                <option value="{{ station.id }}"
+
+                > {{ station.nomStation }} </option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" value="Creer" name="Valider" >
+
+  </form>
+
+
+
+{% endblock %}

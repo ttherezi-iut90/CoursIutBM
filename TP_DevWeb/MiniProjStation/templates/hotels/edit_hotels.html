@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>modifier un hotel</title>
+{% endblock %}
+
+{% block body %}
+  <h2>modifier un hotel</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/hotel/edit">
+    <fieldset>
+        <legend> Modifier un hotel</legend>
+
+        <input type="hidden" name="id" size="18" value="{{ hotel.id }}" id="id">
+
+        <label for="nomHotel">nom de l'hotel</label><br>
+        <input type="text" name="nomHotel" size="18" value="{{ hotel.nomHotel }}" id="nomHotel"><br>
+
+        <label for="nombreChambre">nombre de Chambre</label><br>
+        <input type="text" name="nombreChambre" size="18" value="{{ hotel.nombreChambre }}" id="nombreChambre"><br>
+
+        <label for="categorie">categorie</label><br>
+        <select name="categorie"  required >
+            <option value="1" {% if hotel.categorie is defined and  hotel.categorie == '1' %}selected{% endif %}
+                                > cat 1</option>
+            <option value="2" {% if hotel.categorie is defined and hotel.categorie == '2'  %}selected{% endif %}
+                        > cat 2</option>
+            <option value="3" {% if hotel.categorie is defined and hotel.categorie == '3'  %}selected{% endif %}
+                        > cat 3</option>
+            <option value="4" {% if hotel.categorie is defined and hotel.categorie == '4'  %}selected{% endif %}
+                        > cat 4</option>
+            <option value="5" {% if hotel.categorie is defined and hotel.categorie == '5'  %}selected{% endif %}
+                        > cat 5</option>
+        </select><br>
+
+        <label for="prixBaseChambre">prixBaseChambre</label><br>
+        <input id="prixBaseChambre" type="text" name="prixBaseChambre" size="18" value="{{ hotel.prixBaseChambre }}" ><br>
+
+
+        <label for="dateCreation">dateCreation</label><br>
+        <input id="dateCreation" type="date" name="dateCreation" size="18" value="{{ hotel.dateCreation }}" ><br>
+
+
+        <select name="station_id" required>
+            {% for station in stations %}
+                <option value="{{ station.id }}"
+                    {% if hotel.station_id is defined and station.id ==  hotel.station_id  %}selected{% endif %}
+                > {{ station.nomStation }} </option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" value="Modifier" name="Modifier" >
+    </fieldset>
+  </form>
+{% endblock %}

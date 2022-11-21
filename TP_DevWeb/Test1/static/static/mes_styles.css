@@ -1,0 +1,27 @@
+table ,tr {
+  table-layout: fixed;
+  width: 80%;
+    height: 40px;
+  border-collapse: collapse;
+  border: 1px solid purple;
+  background-color: yellow;
+}
+
+a {
+    width:150px;
+    height: 30px;
+    background-color:gold;
+    border: 1px green groove ;
+    text-align:center;
+    vertical-align: middle;
+    padding: 5px;
+    margin : 5px;
+    border-radius: 15px;
+}
+
+.flashes {
+    padding: 5px;
+    margin : 5px;
+    background-color: green;
+    list-style-type: none;
+}

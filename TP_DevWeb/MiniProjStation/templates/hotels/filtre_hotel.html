@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{%  block title %}
+    <title> Filtre des hotels  </title>
+{% endblock %}
+{% block body %}
+    <h3>Filtre des hotels</h3>
+
+
+    <form class="card flex-row text-white bg-warning mb-3" method="get" action="/hotel/filtre">
+        <fieldset>
+            <label for="filter_word">Hotels dont le nom est composé par : </label><br>
+            <input id="filter_word" type="text" name="filter_word" size="18" value="" placeholder="Recherche"><br>
+
+            {%  for station in stations %}
+                <input type="checkbox" id="{{ station.nomStation }}" name="filter_items" value="{{ station.nomStation }}">
+                <label >{{ station.nomStation }}</label><br>
+
+            {% endfor %}
+
+            <label for="min">Prix minium : </label>
+            <input type="number" id="filter_value_min" name="filter_value_min">
+
+            <label for="MAX">Prix maximum : </label>
+            <input type="number" id="filter_value_max" name="filter_value_max"><br>
+
+
+            <input type="submit" value="Creer" name="Valider" >
+
+
+        </fieldset>
+    </form>
+
+
+
+
+<div class="container-flex grille-card flex-row" style="">
+
+    {% for hotel in hotels %}
+
+    <div class="card text-white bg-warning mb-3 container-flex flex-row " style="width: 25rem;">
+        <img class="card-img-top" src="" alt="">
+        <div class="card-body">
+
+            <h5 class="card-title">{{ hotel.nomHotel }}</h5>
+            <p class="card-text">nombre de chambre : {{ hotel.nombreChambre }}</p>
+            <p class="card-text">prix de base d'une chambre : {{ hotel.prixBaseChambre }}</p>
+            <p class="card-text">Date de création : {{ hotel.dateCreation }}</p>
+            <p class="card-text">
+                {% for station in stations %}
+                    {% if hotel.station_id == station.id %} {{ station.nomStation }} {% endif %}
+                {% endfor %}
+
+
+
+            </p>
+
+        </div>
+
+
+</div>
+
+    {% endfor %}
+
+
+</div>
+{% endblock %}

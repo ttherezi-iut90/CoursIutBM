@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{%  block title %}
+    <title> Affiche les stations </title>
+{% endblock %}
+
+{% block body %}
+<h3>Stations</h3>
+<a href="/station/add">ajouter une station</a>
+<br><br>
+
+<table class="table" >
+    <thead class="thead-dark">
+        <tr>
+            <th>id</th>
+            <th>designation</th>
+            <th>altitude</th>
+            <th>opération</th>
+        </tr>
+    </thead>
+    <tbody >
+
+
+
+
+    {% if stations | length >= 1 %}
+        {% for ligne in stations %}
+           <tr >
+                  <td>{{ ligne.id }}</td>
+                  <td>{{ ligne.nomStation }}</td>
+                  <td>{{ ligne.altitude }}</td>
+                  <td>
+                      <a href="/station/edit?id={{ ligne.id }}">editer</a>&nbsp;
+                      <a href="/station/delete?id={{ ligne.id }}" onclick="return confirm('êtes vous sur ?')">supprimer</a>
+
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td>
+                      pas de stations
+                  </td>
+           </tr>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{%  block title %}
+    <title> Affiche les hotels </title>
+{% endblock %}
+
+{% block body %}
+<h3>Hotels</h3>
+<a href="/hotel/add">ajouter un hotel</a>
+<br><br>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>id</th>
+            <th>nomHotel</th>
+            <th>nombreChambre</th>
+            <th>categorie</th>
+            <th>prixBaseChambre</th>
+            <th>dateCreation</th>
+            <th>station_id</th>
+
+            <th>opération</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if hotels | length >= 1 %}
+        {% for ligne in hotels %}
+           <tr>
+                  <td>{{ ligne.id }}</td>
+                  <td>{{ ligne.nomHotel }}</td>
+                  <td>{{ ligne.nombreChambre }}</td>
+                  <td>{{ ligne.categorie }}</td>
+                  <td>{{ ligne.prixBaseChambre }}</td>
+                  <td>{{ ligne.dateCreation }}</td>
+                  <td>{{ ligne.station_id }}</td>
+
+                  <td>
+                      <a href="/hotel/edit?id={{ ligne.id }}&amp;param2={{ligne.nomHotel}}">editer</a>&nbsp;
+                      <a href="/hotel/delete?id={{ ligne.id }}" onclick="return confirm('êtes vous sur ?')">supprimer</a>
+
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td>
+                      pas de hotels
+                  </td>
+           </tr>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}
+
+
+
