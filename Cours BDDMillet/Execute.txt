@@ -1,0 +1,8 @@
+-- compte ttherezi  (remplacer ttherezi et 8060) dans tout le script
+-- mysql --user=ttherezi --password=8060 --host=localhost  --database=BDD_ttherezi
+
+CREATE DATABASE BDD_ttherezi;
+CREATE USER 'ttherezi' IDENTIFIED BY  '8060';
+
+GRANT ALL PRIVILEGES ON  *.* To 'ttherezi';
+FLUSH PRIVILEGES;
