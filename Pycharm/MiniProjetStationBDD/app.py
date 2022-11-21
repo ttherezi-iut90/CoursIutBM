@@ -1,6 +1,6 @@
 #! /usr/bin/python
 # -*- coding:utf-8 -*-
-from flask import Flask, request, render_template, redirect, url_for, abort, flash
+from flask import Flask, request, render_template, redirect, url_for, abort, flash , session
 
 app = Flask(__name__)
 app.secret_key = 'une cle(token) : grain de sel(any random string)'
@@ -294,32 +294,40 @@ def filtre_hotels():
             else:
                 flash(u'votre Mot recherché doit uniquement être composé de lettres')
         else:
-            if len(filter_word):
+            if len(filter_word) ==1:
                 flash(u'votre Mot recherché doit être composé de au moins 2 lettres')
             else:
                 session.pop('filter_word',None)
 
-        message = u'filtre sur le mot : ' + filter_word
-        flash(message, 'alert-success')
+
+
     if filter_value_min or filter_value_max:
         if filter_value_min.isdecimal() and filter_value_max.isdecimal():
             if int(filter_value_min) < int(filter_value_max) :
-                message = u'filtre sur la colonne avec un prix entre ' + filter_value_min + ' et ' + filter_value_max
-                flash(message, 'alert-success')
+                session['filter_value_min'] = filter_value_min
+                session['filter_value_max'] = filter_value_max
+
             else:
-                message= u'min<max'
-                flash(message, 'alert-warning')
+
+                flash( u'min < max')
         else:
             message = u'min et max doivent etre des numeriques'
             flash(message, 'alert-warning')
     if filter_items and filter_items != []:
         message= u'case à cocher selectionner : '
-        for case in filter_items :
-            message += 'id ' +case + ' '
-        flash(message,'alert-success')
-    return render_template('hotels/filtre_hotel.html',hotels=hotels,stations=stations)
+        if isinstance(filter_items,list):
+           check_filter_item = True
+           for number_item in filter_items:
+               print('test',number_item)
+               if not number_item.isdecimal():
+                   check_filter_item = False
+           if check_filter_item:
+               session['filter_items'] = filter_items
+    return redirect(url_for('client_index'))
 
 
+@app.route('/hotel/filtre/suppr',methods=['POST'])
+def suppr_filtre():
 
 
 
