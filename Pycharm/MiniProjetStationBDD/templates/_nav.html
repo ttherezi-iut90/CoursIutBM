@@ -1,0 +1,15 @@
+<nav class="navbar">
+    <a class="btn" href="/station/show"> stations </a>  -
+    <a class="btn" href="/hotel/show"> hotels </a>  -
+    <a class="btn" href="/hotel/filtre">filtre hotels </a>
+</nav>
+<hr>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for categorie, message in messages %}
+    <div role="alert" class="alert {{ categorie }}">
+           Information : <strong>{{ message }}</strong>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}

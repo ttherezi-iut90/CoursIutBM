@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>ajouter une station</title>
+{% endblock %}
+
+{% block body %}
+  <h2>ajout d'une station</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/station/add" >
+    <fieldset>
+        <legend> Créer une station</legend>
+        <label for="nomStation">Nom Stations</label><br>
+        <input id="nomStation" type="text" name="nomStation" size="18" value="" placeholder="Saisir le nom de la station" required><br>
+
+        <label for="altitude">Altitude</label><br>
+        <input id="altitude" type="number" name="altitude" value="" placeholder="Saisir l'altitude de la station'" required><br>
+        <input type="submit" value="Creer" name="Valider" >
+    </fieldset>
+  </form>
+{% endblock %}

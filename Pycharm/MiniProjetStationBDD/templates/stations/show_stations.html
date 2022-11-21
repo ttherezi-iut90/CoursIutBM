@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{%  block title %}
+    <title> Affiche les stations </title>
+{% endblock %}
+
+{% block body %}
+<h3>Stations</h3>
+<a href="/station/add">ajouter une station</a>
+<br><br>
+
+<table class="table" >
+    <thead class="thead-dark">
+        <tr>
+            <th>id</th>
+            <th>designation</th>
+            <th>Nbr d'hotel</th>
+            <th>altitude</th>
+
+            <th>opération</th>
+        </tr>
+    </thead>
+    <tbody >
+
+
+
+
+    {% if stations | length >= 1 %}
+        {% for ligne in stations %}
+           <tr >
+                  <td>{{ ligne.id }}</td>
+                  <td>{{ ligne.nomStation }}</td>
+                  <td style="color: red">
+                      {% if ligne.nbr == 0 %}
+                          Pas d'hotel
+                      {% else %}
+                          {{ ligne.nbr }}
+                      {% endif %}
+                  </td>
+                  <td>{{ ligne.altitude }}</td>
+                  <td>
+                      <a href="/station/edit?id={{ ligne.id }}">editer</a>&nbsp;
+                      <a href="/station/delete?id={{ ligne.id }}" onclick="return confirm({% if ligne.nbr == 0 %}'Cette supression est possible'{% else %}'Cette supression va suprimer {{ ligne.nbr }} hotels : {% for hotel in hotels %}{% if hotel.station_id == ligne.id %} \n id : {{ hotel.id_hotel }} , nom : {{ hotel.nom_hotel }}{% endif %}{% endfor %}'{% endif %})">supprimer</a>
+
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td>
+                      pas de stations
+                  </td>
+           </tr>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
