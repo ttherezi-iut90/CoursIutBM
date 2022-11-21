@@ -1,0 +1,105 @@
+{
+    // Utilisez IntelliSense pour en savoir plus sur les attributs possibles.
+    // Pointez pour afficher la description des attributs existants.
+    // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Damiers",
+            "request": "launch",
+            "mainClass": "Damiers",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch Erdos",
+            "request": "launch",
+            "mainClass": "Erdos",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch Flocon",
+            "request": "launch",
+            "mainClass": "Flocon",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch Hanoi",
+            "request": "launch",
+            "mainClass": "Hanoi",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch Horloge",
+            "request": "launch",
+            "mainClass": "Horloge",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch JeuVie",
+            "request": "launch",
+            "mainClass": "JeuVie",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch Reversi",
+            "request": "launch",
+            "mainClass": "Reversi",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch Reversi2",
+            "request": "launch",
+            "mainClass": "Reversi2",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch Rupture",
+            "request": "launch",
+            "mainClass": "Rupture",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch StdDraw",
+            "request": "launch",
+            "mainClass": "StdDraw",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch TD2D",
+            "request": "launch",
+            "mainClass": "TD2D",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch TableMultiplication",
+            "request": "launch",
+            "mainClass": "TableMultiplication",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch Triangle",
+            "request": "launch",
+            "mainClass": "Triangle",
+            "projectName": "CoursIutBM_a93c7623"
+        }
+    ]
+}
