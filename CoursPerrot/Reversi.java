@@ -91,6 +91,12 @@ public class Reversi {
         }
     }
 
+
+    public static void joueur() {
+        
+        
+    }
+
     public static void main(String args[]){
         int TAILLE = 9;
         //int[] tValeurs = new int[TAILLE];
