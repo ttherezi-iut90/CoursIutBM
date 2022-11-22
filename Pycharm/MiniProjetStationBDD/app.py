@@ -285,35 +285,29 @@ def valid_edit_hotels():
 def filtre_hotels():
     mycursor = mydb.cursor()
 
-
-    filter_word = request.args.get('filter_word',None)
-    filter_value_min = request.args.get('filter_value_min',None)
-    filter_value_max = request.args.get('filter_value_max',None)
-    filter_items = request.args.getlist('filter_items',None)
-
-
-
+    filter_word = request.args.get('filter_word', None)
+    filter_value_min = request.args.get('filter_value_min', None)
+    filter_value_max = request.args.get('filter_value_max', None)
+    filter_items = request.args.getlist('filter_items', None)
     if filter_word and filter_word != "":
         message = u'filtre sur le mot : ' + filter_word
         flash(message, 'alert-success')
     if filter_value_min or filter_value_max:
         if filter_value_min.isdecimal() and filter_value_max.isdecimal():
-            if int(filter_value_min) < int(filter_value_max) :
+            if int(filter_value_min) < int(filter_value_max):
                 message = u'filtre sur la colonne avec un prix entre ' + filter_value_min + ' et ' + filter_value_max
                 flash(message, 'alerte-success')
-                Valeur.append(filter_value_max)
-                Valeur.append(filter_value_min)
             else:
-                message= u'min<max'
+                message = u'min<max'
                 flash(message, 'alert-warning')
         else:
             message = u'min et max doivent etre des numeriques'
             flash(message, 'alert-warning')
     if filter_items and filter_items != []:
-        message= u'case à cocher selectionner : '
-        for case in filter_items :
-            message += 'id ' +case + ' '
-        flash(message,'alert-success')
+        message = u'case à cocher selectionner : '
+        for case in filter_items:
+            message += 'id ' + case + ' '
+        flash(message, 'alert-success')
 
 
     sql = "SELECT id_hotel as id," \
