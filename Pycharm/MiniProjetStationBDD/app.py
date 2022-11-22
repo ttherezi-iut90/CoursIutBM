@@ -280,54 +280,59 @@ def valid_edit_hotels():
 
 
 
+
 @app.route ('/hotel/filtre', methods=['GET'])
 def filtre_hotels():
+    mycursor = mydb.cursor()
+
+
     filter_word = request.args.get('filter_word',None)
     filter_value_min = request.args.get('filter_value_min',None)
     filter_value_max = request.args.get('filter_value_max',None)
     filter_items = request.args.getlist('filter_items',None)
-    print("word: " + filter_word + str(len(filter_word)))
-    if filter_word and  filter_word != "":
-        if len(filter_word) >1:
-            if filter_word.isalpha():
-                session['filter_word']=filter_word
-            else:
-                flash(u'votre Mot recherché doit uniquement être composé de lettres')
-        else:
-            if len(filter_word) ==1:
-                flash(u'votre Mot recherché doit être composé de au moins 2 lettres')
-            else:
-                session.pop('filter_word',None)
 
 
 
+    if filter_word and filter_word != "":
+        message = u'filtre sur le mot : ' + filter_word
+        flash(message, 'alert-success')
     if filter_value_min or filter_value_max:
         if filter_value_min.isdecimal() and filter_value_max.isdecimal():
             if int(filter_value_min) < int(filter_value_max) :
-                session['filter_value_min'] = filter_value_min
-                session['filter_value_max'] = filter_value_max
-
+                message = u'filtre sur la colonne avec un prix entre ' + filter_value_min + ' et ' + filter_value_max
+                flash(message, 'alerte-success')
+                Valeur.append(filter_value_max)
+                Valeur.append(filter_value_min)
             else:
-
-                flash( u'min < max')
+                message= u'min<max'
+                flash(message, 'alert-warning')
         else:
             message = u'min et max doivent etre des numeriques'
             flash(message, 'alert-warning')
     if filter_items and filter_items != []:
         message= u'case à cocher selectionner : '
-        if isinstance(filter_items,list):
-           check_filter_item = True
-           for number_item in filter_items:
-               print('test',number_item)
-               if not number_item.isdecimal():
-                   check_filter_item = False
-           if check_filter_item:
-               session['filter_items'] = filter_items
-    return redirect(url_for('client_index'))
+        for case in filter_items :
+            message += 'id ' +case + ' '
+        flash(message,'alert-success')
 
 
-@app.route('/hotel/filtre/suppr',methods=['POST'])
-def suppr_filtre():
+    sql = "SELECT id_hotel as id," \
+          "nom_hotel as nomHotel," \
+          "nombre_chambre as nombreChambre ," \
+          "categorie," \
+          "prix_base_chambre as prixBaseChambre," \
+          "date_creation as dateCreation ," \
+          "photo as image," \
+          "station_id FROM hotel ORDER BY id_hotel"
+    mycursor.execute(sql)
+    hotels = mycursor.fetchall()
+    sql = "SELECT id_station as id," \
+          " nom_station as nomStation," \
+          " altitude as altitude FROM station ORDER BY id_station"
+    mycursor.execute(sql)
+    stations = mycursor.fetchall()
+
+    return render_template('hotels/filtre_hotel.html',hotels=hotels,stations=stations)
 
 
 
