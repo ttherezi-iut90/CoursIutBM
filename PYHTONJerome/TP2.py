@@ -114,3 +114,37 @@ def Graph():
     nbr = 3456234
     print("le numero ")
     print(nbr //l)
+
+
+
+
+#-----------DEUXIEME PARTIE----------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
