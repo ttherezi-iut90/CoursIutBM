@@ -87,12 +87,12 @@ def premierChiffres(n,nbre):
         n=n//10 
     return n
 
-
+"""
 print(premierChiffres(6782,1))
 print(premierChiffres(78295,2))
 print(premierChiffres(65637765345,5))
 print(premierChiffres(0,3))
-
+"""
 
 #---------------chiffres(n,debut,fin)-------
 
@@ -120,6 +120,153 @@ def Graph():
 
 #-----------DEUXIEME PARTIE----------
 
+
+def quotient(a,b):
+    if b == 0:
+        print(" division par 0 impossible")
+        return 
+    i = 0
+    while (a>=b):
+        a = a - b
+        i =i + 1
+    
+    return i
+"""
+quotient(3,8)
+quotient(8,0)
+quotient(8,3)
+quotient(236,30)
+"""
+
+
+def reste(a,b):
+    if b == 0:
+        print(" division par 0 impossible")
+        return 
+    c = b
+    while (a>=b):
+        a = a - b
+        
+    
+    return a
+
+
+"""
+reste(3,8)
+reste(8,0)
+reste(8,3)
+reste(236,30)
+"""
+
+
+
+def div( a,b):
+    if b == 0:
+        print(" division par 0 impossible")
+        return 
+    i = 0
+    while (a>=b):
+        a = a - b
+        i =i + 1
+    
+    return i,a
+"""
+div(3,8)
+div(8,0)
+div(8,3)
+div(236,30)
+"""
+
+def quotient2(a,b):
+    q,r = div(abs(a),abs(b))
+    if r != 0:
+        if a>=0 and b>0:
+            return q
+        if a>=0 and b<0:
+            return -q
+        if a<0 and b>0:
+            return -q-1
+        if a<0  and b<0 :
+            return q+1
+    else:
+        if a>=0 and b>0:
+            return q
+        if a>=0 and b<0:
+            return -q
+        if a<0 and b>0:
+            return -q
+        if a<0  and b<0 :
+            return q
+
+"""          
+print("quotien 2")
+print(quotient2(26,5))
+print(quotient2(26,-5))
+print(quotient2(-26,5))
+print(quotient2(-26,-5))
+print(quotient2(25,5))
+print(quotient2(25,-5))
+print(quotient2(-25,5))
+print(quotient2(-25,-5))
+ """
+
+def reste2(a,b):
+    q,r = div(abs(a),abs(b))
+    if r != 0:
+        
+        if a<0 and b>=0:
+            return b-r
+        if a<0  and b<0 :
+            return -b-r
+        return r
+    else:
+        return 0
+
+""" 
+print("reste 2")
+print(reste2(26,5))
+print(reste2(26,-5))
+print(reste2(-26,5))
+print(reste2(-26,-5))
+print(reste2(25,5))
+print(reste2(25,-5))
+print(reste2(-25,5))
+print(reste2(-25,-5))
+ """
+
+def div2(a,b):
+    q,r = div(abs(a),abs(b))
+    if r != 0:
+        if a>=0 and b>=0:
+            return q,r
+        if a>=0 and b<0:
+            return -q,r
+        if a<0 and b>=0:
+            return -q-1,b-r
+        if a<0  and b<0 :
+            return q+1,-b-r
+    else:
+        if a>=0 and b>=0:
+            return q,r
+        if a>=0 and b<0:
+            return -q,r
+        if a<0 and b>=0:
+            return -q,r
+        if a<0  and b<0 :
+            return q,r
+
+
+"""
+print("div 2")
+print(div2(26,5))
+print(div2(26,-5))
+print(div2(-26,5))
+print(div2(-26,-5))
+print(div2(25,5))
+print(div2(25,-5))
+print(div2(-25,5))
+print(div2(-25,-5))
+"""
 
 
 
