@@ -40,15 +40,7 @@
                   <td>{{ ligne.altitude }}</td>
                   <td>
                       <a href="/station/edit?id={{ ligne.id }}">editer</a>&nbsp;
-                      <a href="
-                    {% if ligne.nbr == 0 %}
-                    /station/delete?id={{ ligne.id }}
-                    {% else %}
-                    /station/deleteGroupe?
-                        {% for hotel in hotels %}
-                            {% if hotel.station_id == ligne.id %}
-                                id{{ hotel }}={{ hotel.id_hotel }}
-                    " onclick="return confirm({% if ligne.nbr == 0 %}'Cette supression est possible'{% else %}'Cette supression va suprimer {{ ligne.nbr }} hotels : {% for hotel in hotels %}{% if hotel.station_id == ligne.id %} \n id : {{ hotel.id_hotel }} , nom : {{ hotel.nom_hotel }}{% endif %}{% endfor %}'{% endif %})">supprimer</a>
+                      <a href=" {% if ligne.nbr == 0 %}/station/delete?id={{ ligne.id }} {% else %}/station/deleteGroup?id={{ ligne.id }} {% endif %}" >supprimer</a>
 
                   </td>
            </tr>
@@ -63,13 +55,3 @@
     </tbody>
 </table>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-

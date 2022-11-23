@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block body %}
-<h3>Hotels</h3>
-<a href="/hotel/add">ajouter un hotel</a>
+<h3>Hotels à suprimer</h3>
+
 <br><br>
 
 <table class="table">
@@ -14,12 +14,10 @@
         <tr>
             <th>id</th>
             <th>nomHotel</th>
-            <th>nombreChambre</th>
-            <th>categorie</th>
-            <th>prixBaseChambre</th>
+
             <th>dateCreation</th>
-            <th>photo</th>
-            <th>station_id</th>
+
+            <th>Station</th>
 
             <th>opération</th>
         </tr>
@@ -30,17 +28,9 @@
            <tr>
                   <td>{{ ligne.id }}</td>
                   <td>{{ ligne.nomHotel }}</td>
-                  <td>{{ ligne.nombreChambre }}</td>
-                  <td>{{ ligne.categorie }}</td>
-                  <td>{{ ligne.prixBaseChambre }}</td>
+
                   <td>{{ ligne.dateCreation }}</td>
-                  <td>
-                  {%  if ligne.image is not none %}
-                      <img style="width:40px;height:40px"  src="{{ url_for('static', filename = 'images/' + ligne['image']) }}"  alt="image  de {{ ligne.nomStation }}" >
-                  {% else %}
-                      <img style="width:40px;height:40px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="no image" >
-                  {% endif %}
-                  </td>
+
                   <td>
                       {% for station in stations %}
                           {% if station.id == ligne.station_id %}
@@ -51,8 +41,8 @@
                   </td>
 
                   <td>
-                      <a href="/hotel/edit?id={{ ligne.id }}&amp;param2={{ligne.nomHotel}}">editer</a>&nbsp;
-                      <a href="/hotel/delete?id={{ ligne.id }}">supprimer</a>
+
+                      <a href="/hotel/deleteGroupe?id={{ ligne.id }}&idStation={{ id }}">supprimer</a>
 
                   </td>
            </tr>

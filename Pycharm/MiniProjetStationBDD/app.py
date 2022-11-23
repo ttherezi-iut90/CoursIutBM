@@ -138,35 +138,40 @@ def delete_stations():
     mycursor = mydb.cursor()
     id = request.args.get('id', '')
     tuple_insert = (id,)
-    sqlSelect = "SELECT * FROM hotel WHERE station_id = %s;"
-    mycursor.execute(sqlSelect,tuple_insert)
-    listeHotels = mycursor.fetchall()
-    listerep=[]
-
-    for x in listeHotels:
-        id_hotel = (x['id_hotel'])
-        sql = "DELETE FROM hotel WHERE id_hotel=%s;"
-        mycursor.execute(sql, id_hotel )
-        mydb.commit()
-        listerep.append(id_hotel)
-
     sql = "DELETE FROM station WHERE id_station = %s;"
     mycursor.execute(sql,tuple_insert)
     mydb.commit()
-
     message = u'une station supprimé, id_station : ' + id
-
-    for x in listerep:
-        message = message + "\r\n + l'hotel , "
-        for hotel in listeHotels:
-            if hotel['id_hotel'] == x:
-                message = message + "id_hotel : " + str(hotel['id_hotel']) + " , nom_hotel : " + str(hotel['nom_hotel'])
-
     print(message)
     flash(message, 'alert-warning')
     return redirect('/station/show')
 
-@app.route('hotel/deleteGroupe')
+
+
+@app.route('/station/deleteGroup', methods=['GET'])
+def delete_stationsGroup():
+    mycursor = mydb.cursor()
+    id = request.args.get('id', '')
+    tuple_insert = (id,)
+    sql = "SELECT id_hotel as id," \
+          "nom_hotel as nomHotel," \
+          "nombre_chambre as nombreChambre ," \
+          "categorie," \
+          "prix_base_chambre as prixBaseChambre," \
+          "date_creation as dateCreation ," \
+          "photo as image," \
+          "station_id FROM hotel WHERE station_id = %s ORDER BY id_hotel"
+    mycursor.execute(sql,tuple_insert)
+    hotels = mycursor.fetchall()
+    if (len(hotels)==0) :
+        return redirect('/station/delete?id='+id)
+    sql = "SELECT id_station as id," \
+          " nom_station as nomStation," \
+          " altitude as altitude FROM station ORDER BY id_station"
+    mycursor.execute(sql)
+    stations = mycursor.fetchall()
+
+    return render_template('hotels/delete_hotel.html', stations=stations, hotels=hotels, id=id)
 
 
 
@@ -187,7 +192,22 @@ def delete_hotels():
     flash(message, 'alert-warning')
     return redirect('/hotel/show')
 
+@app.route('/hotel/deleteGroupe', methods=['GET'])
+def delete_hotel():
+    mycursor = mydb.cursor()
 
+    id = request.args.get('id', '')
+    tuple_insert = (id)
+    idStation = request.args.get('idStation', '')
+
+    sql = "DELETE FROM hotel WHERE id_hotel = %s;"
+    mycursor.execute(sql, tuple_insert )
+    mydb.commit()
+
+    print ("un hotel supprimé, id :",id)
+    message=u'un hotel supprimé, id : ' + id
+    flash(message, 'alert-warning')
+    return redirect('/station/deleteGroup?id='+idStation)
 
 
 
@@ -274,8 +294,10 @@ def valid_edit_hotels():
           " station_id = %s WHERE id_hotel = %s"
     mycursor.execute(sql,tuple_Insert)
     mydb.commit()
+    retour = '\n'
     print(u'Hotel modifié id : ', id, " ,nomHotel :" , nomHotel ," ,nombreChambre : " , nombreChambre , " ,categorie : ",categorie , " prixBaseChambre : ", prixBaseChambre, " ,dateCreation : ",dateCreation, " ,image : ",image," ,station_id : ",station_id)
-    message='Hotel modifié id : ' + id + u' , nomHotel : '+ nomHotel + " , nombreChambre : " + nombreChambre + " ,  categorie : " + categorie + " , prixBaseChambre : " + prixBaseChambre +" , dateCreation : "+dateCreation + " ,image : " + image + " , station_id : "+ station_id
+    message='Hotel modifié -> id : ' + id +retour +u',  nom : '+ nomHotel + " , nombre de Chambre : " + nombreChambre + " ,  categorie : " + categorie + " , prix d'une Chambre : " + prixBaseChambre +" , date de Creation : "+dateCreation + " , image : " + image + " , station : "+ station_id
+
     flash(message, 'alert-success')
     return redirect('/hotel/show')
 
