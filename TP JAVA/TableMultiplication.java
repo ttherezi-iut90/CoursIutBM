@@ -32,6 +32,7 @@ public class TableMultiplication {
                 TabPosition[(n * tt) % TabPosition.length][1]);
 
     }
+    
 
     public static void repPoint(double[][] TabPosition) {
 
@@ -42,11 +43,9 @@ public class TableMultiplication {
         }
     }
 
-    public static void main(String[] args) {
 
-        StdDraw.enableDoubleBuffering();
-        int tt = Integer.parseInt(args[1]);
-        int u = Integer.parseInt(args[0]);
+
+    public static void fonctionP2(int tt,int u) {
         initCercle();
 
         for (int n = 10; n < 2000; n++) {
@@ -63,10 +62,56 @@ public class TableMultiplication {
                 
             }
             StdDraw.show();
-            StdDraw.pause(10);
+            StdDraw.pause(100);
             StdDraw.clear();
            
 
         }
+    }
+
+
+    public static void DrawTest(int Depart, int Arrive,double[][] TabPosition) {
+        StdDraw.line(TabPosition[Depart][0], TabPosition[Depart][1],
+             TabPosition[(Arrive) % TabPosition.length][0],
+             TabPosition[(Arrive) % TabPosition.length][1]);
+
+    }
+    public static void Raytrace(int tt,int n) {
+        initCercle();
+        double[][] TabPosition = preCalc(n);
+        
+        
+        
+        StdDraw.setPenColor(StdDraw.BLUE);
+        for (int i=1;i < TabPosition.length;i++ )
+        {
+           
+            
+
+            DrawTest(0, i, TabPosition);
+            DrawTest(i, i*2, TabPosition);
+            StdDraw.show();
+            StdDraw.pause(100);
+            
+
+        }
+
+        
+    } 
+    public static void main(String[] args) {
+
+        StdDraw.enableDoubleBuffering();
+        int tt = Integer.parseInt(args[1]);
+        int u = Integer.parseInt(args[0]);
+
+        //fonctionP2(tt, u);
+
+        Raytrace(tt, u);
+
+
+
+
+
+        
     }
 }
