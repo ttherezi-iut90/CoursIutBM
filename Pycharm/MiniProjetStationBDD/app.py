@@ -294,9 +294,8 @@ def valid_edit_hotels():
           " station_id = %s WHERE id_hotel = %s"
     mycursor.execute(sql,tuple_Insert)
     mydb.commit()
-    retour = '\n'
     print(u'Hotel modifié id : ', id, " ,nomHotel :" , nomHotel ," ,nombreChambre : " , nombreChambre , " ,categorie : ",categorie , " prixBaseChambre : ", prixBaseChambre, " ,dateCreation : ",dateCreation, " ,image : ",image," ,station_id : ",station_id)
-    message='Hotel modifié -> id : ' + id +retour +u',  nom : '+ nomHotel + " , nombre de Chambre : " + nombreChambre + " ,  categorie : " + categorie + " , prix d'une Chambre : " + prixBaseChambre +" , date de Creation : "+dateCreation + " , image : " + image + " , station : "+ station_id
+    message='Hotel modifié -> id : ' + id +u',  nom : '+ nomHotel + " , nombre de Chambre : " + nombreChambre + " ,  categorie : " + categorie + " , prix d'une Chambre : " + prixBaseChambre +" , date de Creation : "+dateCreation + " , image : " + image + " , station : "+ station_id
 
     flash(message, 'alert-success')
     return redirect('/hotel/show')
