@@ -166,6 +166,7 @@ def delete_stations():
     flash(message, 'alert-warning')
     return redirect('/station/show')
 
+@app.route('hotel/deleteGroupe')
 
 
 
