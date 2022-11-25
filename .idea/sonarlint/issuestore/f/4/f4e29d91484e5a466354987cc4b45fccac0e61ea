@@ -1,9 +1,12 @@
 
 0
 java:S1220""Move this file to a named package.
-S	java:S106"9Replace this use of System.out or System.err by a logger.( ¶’©ùÿÿÿÿ
-N	java:S106
-"9Replace this use of System.out or System.err by a logger.(êöƒ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(Û®÷â
-5
-java:S1659"Declare "n" on a separate line.(Ÿàäç
+S	java:S106"9Replace this use of System.out or System.err by a logger.( ¶’©ùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(êöƒ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Û®÷â
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ò¢Ïıÿÿÿÿ8£òíÊ0
+U	java:S106"9Replace this use of System.out or System.err by a logger.(í×š8¥òíÊ0
+U	java:S106#"9Replace this use of System.out or System.err by a logger.(¦±¥8§òíÊ0
+Z	java:S106%"9Replace this use of System.out or System.err by a logger.(÷î‡±øÿÿÿÿ8©òíÊ0
+Z	java:S106)"9Replace this use of System.out or System.err by a logger.(ù¤’èùÿÿÿÿ8ªòíÊ0
+j	java:S100,"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØÄ®8«òíÊ0
