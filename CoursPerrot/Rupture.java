@@ -88,6 +88,31 @@ public class Rupture {
     }
 
  
+/**
+ * Fonction permettant de trier par ordre croissant un tableau grace au tri par Insertion
+ * @param tab
+ */
+public static void triInsert(int [] tab) {
+    int taille = tab.length;
+    int valeur;
+    int limite;
+    int place;
+
+    for ( limite = 1; limite <taille-1;limite++)
+    {
+        valeur = tab[limite];
+        place = limite;
+        while ((place>0) && (tab[place-1]>valeur))
+        {
+            tab[place] = tab[place-1];
+            place = place -1;
+        }
+        tab[place] = valeur;
+    }
+}
+
+
+
     /**
      * renvoi un tableau entier 1D des indices de début de séquence croissante
      * (quand tab[i]<=tab[i+1])
@@ -96,15 +121,14 @@ public class Rupture {
      */
     public static void main(String[] args) {
 
-        int[] tabValeur = { 1, 2, 5, 7, 2, 6, 0, 5, 2, 4, 6, 7, 8, 9, 3, 4, 6, 1, 2, 7, 8, 9, 4, 2, 3, 1, 5, 9, 7, 1, 6,
-                6, 3 };
+        int[] tabValeur = { 1, 2, 5, 7, 2, 6, 0, 5, 2, 4, 6, 7, 8, 9, 3, 4, 6, 1, 2, 7, 8, 9, 4, 2, 3, 1, 5, 9, 7, 1, 6,6, 3 };
         afficheTab(tabValeur);
         int [][] tab2 = {{1,2,4,5,6},{3,5,2,1,6},{5,6,6}};
 
 
-        afficheTab2D(tab2);
-        afficheTab2D(sequence(tabValeur));
-        afficheTab(RuptureSimple(tabValeur));
+       
+        triInsert(tabValeur);
+        afficheTab(tabValeur);
 
     }
 
