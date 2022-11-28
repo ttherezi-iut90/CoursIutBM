@@ -18,7 +18,7 @@ public class Erdos {
     static int nbPoints;
 
 	public static void main(String[] args) {
-		//Profiler.init();
+		Profiler.init();
 		// pour centrer la fenêtre en (0,0)
 		StdDraw.setXscale(-1.2, 1.2);
 		StdDraw.setYscale(-1.2, 1.2);
@@ -39,8 +39,10 @@ public class Erdos {
 
 		
 		System.out.println("Ratio (segments tracés)/(segements traçables) = " + ratio);
-		//Profiler.getCallCount();
-		//Profiler.getTotalTime();
+
+		System.out.println(Profiler.getCallCount());
+		System.out.println(Profiler.getTotalTime());
+		
 	}
 
 	/**
@@ -91,5 +93,6 @@ public class Erdos {
 		}
 		StdDraw.show();
 		return ((double)cptTrace/cptTotal);
+
 	}
 }

@@ -75,14 +75,14 @@ public class Rupture {
             {
                 tSequence[i][j - tabRupture[i]] = tab[j];
             }
-        }
+        
 
             tSequence[i] = new int [tab.length - tabRupture[taille-1]];
 
             for (int j = tabRupture[taille-1]; j < taille; j++) {
                 tSequence[taille -1][j-tabRupture[taille-1]] = tab[j];
             }
-       
+        }
 
         return tSequence;
     }
