@@ -1,3 +1,4 @@
+import java.lang.reflect.WildcardType;
 import java.util.*;
 
 import javax.swing.plaf.basic.BasicTabbedPaneUI.TabSelectionHandler;
@@ -112,6 +113,47 @@ public static void triInsert(int [] tab) {
 }
 
 
+public static void echange(int[]tab,int pos1,int pos2) {
+    int tmp;
+    tmp = tab[pos1];
+    tab[pos1]= tab[pos2];
+    tab[pos2] = tmp;
+    
+}
+
+public static void quicksort(int []tab, int low,int high) {
+    
+    int i = low,j=high;
+    int pivot = tab[low +(high-low)/2];
+    while(i<=j)
+    {
+        while (tab[i]<pivot) {
+            i++;
+        }
+        while (tab[j]>pivot) {
+            j--;
+        }
+        if(i<=j)
+        {
+            echange(tab,i,j);
+            i++;
+            j--;
+        }
+        
+        //recursion
+        if(low<j)
+        {
+            quicksort(tab, low, j);
+        }
+        if(i<high)
+            quicksort(tab, i, high);
+    }
+
+
+
+}
+
+
 
     /**
      * renvoi un tableau entier 1D des indices de début de séquence croissante
@@ -125,9 +167,9 @@ public static void triInsert(int [] tab) {
         afficheTab(tabValeur);
         int [][] tab2 = {{1,2,4,5,6},{3,5,2,1,6},{5,6,6}};
 
-
+        quicksort(tabValeur,0,tabValeur.length -1 );
        
-        triInsert(tabValeur);
+        
         afficheTab(tabValeur);
 
     }
