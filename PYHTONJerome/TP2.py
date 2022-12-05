@@ -268,30 +268,61 @@ print(div2(-25,5))
 print(div2(-25,-5))
 """
 
+""" 
+for i in range(600000,2000000):
+    print(i)
+    print((1037**i)%5042)
+    
+
+ """
+""" 
+for i in range(10):
+    print(i)
+    print(reste(1037**i,5042))
 
 
+ """
+
+def puissance(a,b,c):
+    res = 1
+    a=a%c
+    for i in range(b):
+        res = a * res % c
+    return res
+
+""" 
+for i in range(7):
+    print(puissance(7,i,10))
+
+"""
 
 
+""" 
+for i in range(5000000,10000000):
+    print(puissance(1037,i,5042))
+
+ """
 
 
+def puissance2(a,b,c):
+    a = a%c    
+    if b==0:
+        return 1 
+    elif b==1:
+        return a
+    elif b%2 ==0:
+        res = puissance2(a,b//2,c)
+        return (res*res)%c
+    else:
+        res = puissance2(a,b//2,c)
+        return (res*res*a)%c
 
 
+""" 
+
+for i in range(10**200,10**300):
+    print(puissance2(7,i,10))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ """
 
