@@ -326,3 +326,35 @@ for i in range(10**200,10**300):
 
  """
 
+
+def puissance3(a,b,c):
+    a = a % c
+    tab = [1]
+    res = 1
+    inTab = False
+    while not inTab :
+        res= (res*a%c)
+        if (res not in tab):
+            tab.append(res)
+        else:
+            inTab = True
+    deb = tab.index(res)
+    longCycle = len(tab)-deb
+    if b<deb : 
+        return tab[b]
+    else:
+        b%=longCycle
+        i = deb 
+        while i%longCycle != b:
+            i+=1
+        print(tab)
+        print(deb)
+        print(longCycle)
+        return tab[i]
+        
+
+
+
+print(puissance3(1037,10**3000000 +567,5042))
+
+

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch StdAudio",
+            "request": "launch",
+            "mainClass": "StdAudio",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
