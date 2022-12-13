@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch GuitarString",
+            "request": "launch",
+            "mainClass": "GuitarString",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch RingBuffer",
+            "request": "launch",
+            "mainClass": "RingBuffer",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
             "name": "Launch StdAudio",
             "request": "launch",
             "mainClass": "StdAudio",

@@ -8,6 +8,7 @@ public class GuitarString {
     final double ATTN = 0.994;         // coefficient d'atténuation énergétique
     int toc ;                          // compteur de pas de simulation
     RingBuffer buf ;                   // le RingBuffer de la corde
+    System out = new System.out;
 
     /**
      * Constructeur. Alloue un RingBuffer de capacité Fe/freq
@@ -50,7 +51,7 @@ public class GuitarString {
         return toc;
     }
 
-    public static void main(String[] args) {
+    /* public static void main(String[] args) {
         
         double f0 = 659.26; // case7 corde5
         double f1 = 783.99; // case10 corde5
@@ -107,5 +108,96 @@ public class GuitarString {
         StdAudio.close();
 
         
+    } */
+
+
+    public static void main(String[] args) {
+        
+        double C = 261.6;
+        double Cd = 277.2;
+        double D = 293.7;
+        double Dd = 311.1;
+        double E = 329.6;
+        double F = 349.2;
+        double Fd = 369.9;
+        double G = 392.0;
+        double Gd = 415.3;
+        double A = 440.0;
+        double Ad = 466.2;
+        double B = 493.9;
+        
+
+        
+
+
+        GuitarString LA = new GuitarString(A);
+        GuitarString LAd = new GuitarString(Ad);
+        GuitarString SI = new GuitarString(B);
+        GuitarString DO = new GuitarString(C);
+        GuitarString DOd = new GuitarString(Cd);
+        GuitarString RE = new GuitarString(D);
+        GuitarString REd = new GuitarString(Dd);
+        GuitarString MI = new GuitarString(E);
+        GuitarString FA = new GuitarString(F);
+        GuitarString FAd = new GuitarString(Fd);
+        GuitarString SOL = new GuitarString(G);
+        GuitarString SOLd = new GuitarString(Gd);
+        
+
+        LA.pluck();
+        LAd.pluck();
+        SI.pluck();
+        DO.pluck();
+        DOd.pluck();
+        RE.pluck();
+        REd.pluck();
+        MI.pluck();
+        FA.pluck();
+        FAd.pluck();
+        SOL.pluck();
+        SOLd.pluck();
+        
+
+        
+
+        for (int j = 0; j <= StdAudio.SAMPLE_RATE; j++) {
+            StdAudio.play(DO.sample());
+            DO.tic();
+        }
+
+        
+
+        for (int j = 0; j <= StdAudio.SAMPLE_RATE; j++) {
+            StdAudio.play(RE.sample());
+            RE.tic();
+        }
+
+        do{
+            char str = system.in.read();
+        }while(true); 
+
+
+
+        for (int j = 0; j <= StdAudio.SAMPLE_RATE; j++) {
+            StdAudio.play(MI.sample());
+            MI.tic();
+        }
+
+        for (int j = 0; j <= StdAudio.SAMPLE_RATE; j++) {
+            StdAudio.play(FA.sample());
+            FA.tic();
+        }
+
+        for (int j = 0; j <= StdAudio.SAMPLE_RATE; j++) {
+            StdAudio.play(LA.sample());
+            LA.tic();
+        }
+
+        
+
+        for (int j = 0; j <= StdAudio.SAMPLE_RATE; j++) {
+            StdAudio.play(SI.sample());
+            SI.tic();
+        }
     }
 }
