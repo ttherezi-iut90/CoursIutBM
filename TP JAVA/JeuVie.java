@@ -198,6 +198,7 @@ public class JeuVie {
         }
 
         return changes;
+        
     }
 
     public static void main(String[] args) {

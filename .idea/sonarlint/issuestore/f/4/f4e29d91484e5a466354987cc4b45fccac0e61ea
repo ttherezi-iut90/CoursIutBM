@@ -1,19 +1,7 @@
 
-0
-java:S1220""Move this file to a named package.
-S	java:S106"9Replace this use of System.out or System.err by a logger.( ¶’©ùÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(êöƒ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(Û®÷â
-S	java:S106"9Replace this use of System.out or System.err by a logger.(ò¢Ïıÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(í×š
-N	java:S106$"9Replace this use of System.out or System.err by a logger.(¦±¥
-S	java:S106&"9Replace this use of System.out or System.err by a logger.(÷î‡±øÿÿÿÿ
-S	java:S106*"9Replace this use of System.out or System.err by a logger.(ù¤’èùÿÿÿÿ
 c	java:S100-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØÄ®
 5
 java:S1659~"Declare "j" on a separate line.(ÖÒú
-O
-java:S1854¨"8Remove this useless assignment to local variable "tab2".(§Òè
 @
 java:S1481¨")Remove this unused "tab2" local variable.(§Òè
 <

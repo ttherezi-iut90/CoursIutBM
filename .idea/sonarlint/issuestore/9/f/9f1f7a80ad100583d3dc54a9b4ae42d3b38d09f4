@@ -1,17 +1,10 @@
 
 g	java:S117‹"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É«ãô
-0
-java:S1220""Move this file to a named package.
-M	java:S106"9Replace this use of System.out or System.err by a logger.(ºô5
 D
 java:S21407")Use "java.util.Random.nextInt()" instead.(®¨ëğùÿÿÿÿ
-S	java:S106N"9Replace this use of System.out or System.err by a logger.( ¶’©ùÿÿÿÿ
-N	java:S106P"9Replace this use of System.out or System.err by a logger.(êöƒ
-N	java:S106R"9Replace this use of System.out or System.err by a logger.(Û®÷â
 \
 java:S1126b"AReplace this if-then-else statement by a single return statement.(îÃ¦æøÿÿÿÿ
 F
 java:S1197‰"*Move the array designators [] to the type.(¡şÏÖøÿÿÿÿ
 W	java:S125Œ"<This block of commented-out lines of code should be removed.(±ã„Ôùÿÿÿÿ
 R	java:S125“"<This block of commented-out lines of code should be removed.(•Ñ§‘
-T	java:S106˜"9Replace this use of System.out or System.err by a logger.(–Ù‚Ôşÿÿÿÿ
