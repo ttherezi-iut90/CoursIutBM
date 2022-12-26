@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{%  block title %}
+    <title> Affiche les etats hotels </title>
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead class="thead-dark">
+
+            <tr>
+
+                <th>stations</th>
+                <th>moyenne de prix des hotels</th>
+                <th>nombre d'hotels </th>
+            </tr>
+
+        </thead>
+
+
+    {% if etat1 | length >= 1 %}
+        {% for ligne in etat1 %}
+        <tr>
+            <td>{{ ligne.nom_station }}</td>
+            <td {% if ligne.moyenne == None %} style="color: Red" >Valeur inconnue {% else %} >{{ ligne.moyenne }}{% endif %}</td>
+            <td{% if ligne.quantite == 0 %} style="color: Red" >Pas d'hotel{% else %} >{{ ligne.quantite }}{% endif %}</td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+
+
+    </table>
+{% endblock %}

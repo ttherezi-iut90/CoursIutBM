@@ -1,10 +1,13 @@
--- mysql --user=ttherezi  --password=8060 --host=localhost --database=BDD_ProjetStation
+-- mysql --user=ttherezi  --password=8060 --host=localhost --database=BDD_ProjetStation < sql_projet.sql
+
+Create DATABASE if not EXISTS BDD_ProjetStation;
+
 
 DROP TABLE IF EXISTS hotel;
 DROP TABLE IF EXISTS station;
 
 
-create TABLE station(
+create TABLE if not exists station(
     id_station INT AUTO_INCREMENT,
     nom_station VARCHAR(255),
     altitude INT,
@@ -12,7 +15,7 @@ create TABLE station(
 
 );
 
-create TABLE hotel(
+create TABLE if not exists hotel(
     id_hotel INT AUTO_INCREMENT,
     nom_hotel VARCHAR(25),
     nombre_chambre INT,
@@ -24,6 +27,9 @@ create TABLE hotel(
     PRIMARY KEY (id_hotel),
     FOREIGN KEY (station_id) REFERENCES station(id_station)
 );
+
+describe station;
+describe hotel;
 
 INSERT INTO station(id_station, nom_station, altitude)
 VALUES  (NULL, 'OZAN', 206),
@@ -48,21 +54,12 @@ VALUES  (NULL, 'Le Saint joseph', 16, 2, 51.5,'2017-02-03', 'le-saint-joseph.jpg
         (NULL, 'Hotel Juana', 68, 3, 145,'2017-04-16',  'hotel-juana.jpg', 4),
         (NULL,  'Le Sereno',  455,  3, 200, '2017-04-14',  'le-sereno.jpg', 5);
 
+select * from station;
 
-SELECT id_station as id,
-       nom_station as nomStation,
-       altitude as altitude,
 
-       COUNT( id_hotel )  as nbr
 
-FROM station
-left join hotel  on station.id_station = hotel.station_id
-group by id_station order by id_station
-;
+select nom_station, avg(2*prix_base_chambre), count(id_hotel) from station
+left join hotel h on station.id_station = h.station_id
+group by  nom_station
 
-SELECT id_station as id,
-       nom_station as nomStation,
-       altitude as altitude
-FROM station
-ORDER BY id_station;
-
+select

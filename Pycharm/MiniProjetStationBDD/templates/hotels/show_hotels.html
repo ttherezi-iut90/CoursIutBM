@@ -12,14 +12,15 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th>id</th>
-            <th>nomHotel</th>
-            <th>nombreChambre</th>
-            <th>categorie</th>
-            <th>prixBaseChambre</th>
-            <th>dateCreation</th>
-            <th>photo</th>
-            <th>station_id</th>
+            <th>id <a class="btn-warning" href=/hotel/show?idtri=1">⌄</a></th>
+
+            <th>Nom de l'hotel <a class="btn-warning" href=/hotel/show?nomtri=1">⌄</a> </th>
+            <th>Nombre de chambre <a class="btn-warning" href=/hotel/show?nbrtri=1">⌄</a> </th>
+            <th>Categorie <a class="btn-warning" href=/hotel/show?cattri=1">⌄</a> </th>
+            <th>Prix de Base d'une chambre <a class="btn-warning" href=/hotel/show?prixtri=1">⌄</a> </th>
+            <th>Date de creation <a class="btn-warning" href=/hotel/show?datetri=1">⌄</a> </th>
+            <th>Photo <a class="btn-warning" href=/hotel/show?phototri=1">⌄</a> </th>
+            <th>Station <a class="btn-warning" href=/hotel/show?stationtri=1">⌄</a> </th>
 
             <th>opération</th>
         </tr>
@@ -36,12 +37,12 @@
                   <td>{{ ligne.dateCreation }}</td>
                   <td>
                   {%  if ligne.image is not none %}
-                      <img style="width:40px;height:40px"  src="{{ url_for('static', filename = 'images/' + ligne['image']) }}"  alt="image  de {{ ligne.nomStation }}" >
+                      <img class="card-img" style="width:40px;height:40px"  src="{{ url_for('static', filename = 'images/' + ligne['image']) }}"  alt="image  de {{ ligne.nomHotel }}" >
                   {% else %}
-                      <img style="width:40px;height:40px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="no image" >
+                      <img class="card-img" style="width:40px;height:40px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="no image" >
                   {% endif %}
                   </td>
-                  <td>
+                  <td style="color: red">
                       {% for station in stations %}
                           {% if station.id == ligne.station_id %}
                             {{ station.nomStation }}
@@ -51,7 +52,7 @@
                   </td>
 
                   <td>
-                      <a href="/hotel/edit?id={{ ligne.id }}&amp;param2={{ligne.nomHotel}}">editer</a>&nbsp;
+                      <a href="/hotel/edit?id={{ ligne.id }}">editer</a>&nbsp;
                       <a href="/hotel/delete?id={{ ligne.id }}">supprimer</a>
 
                   </td>

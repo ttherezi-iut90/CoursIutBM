@@ -1,8 +1,13 @@
 <nav class="navbar">
     <a class="btn" href="/station/show"> stations </a>  -
     <a class="btn" href="/hotel/show"> hotels </a>  -
-    <a class="btn" href="/hotel/filtre">filtre hotels </a>
+    <a class="btn" href="/hotel/filtre_suppr">filtre hotels </a> -
+    <a class="btn" href="/hotel/etat_show">etat hotels </a>
+
+
+
 </nav>
+
 <hr>
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}

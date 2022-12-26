@@ -7,25 +7,45 @@
     <h3>Filtre des hotels</h3>
 
 
-    <form class="card flex-row text-white bg-warning mb-3" method="get" action="/hotel/filtre">
-        <fieldset>
-            <label for="filter_word">Hotels dont le nom est composé par : </label><br>
-            <input id="filter_word" type="text" name="filter_word" size="18" value="" placeholder="Recherche"><br>
+    <form class="card text-white bg-warning mb-3 container"
+          method="post" action="/hotel/filtre">
+    <fieldset class="justify-content-evenly align-items-center row">
 
+    <div class="col">
+        <label for="">Hotels dont le nom est composé par : </label><br>
+        <input id="filter_word" class="form-control" type="text" name="filter_word" placeholder="Recherche"
+        value="{% if session['filter_word'] is defined%}{{ session['filter_word'] }}{% endif %}">
+    </div>
+
+        {% if stations is defined %}
+        <div class="col">
+<label for="">Station ou se trouve les hotels : </label><br>
             {%  for station in stations %}
-                <input type="checkbox" id="{{ station.nomStation }}" name="filter_items" value="{{ station.nomStation }}">
+
+            <input type="checkbox" id="" name="filter_items" value="{{ station.id }}"
+                {% set id_item = station.id | string %}
+                {% if session['filter_items'] %}
+                    {{ ' checked ' if (id_item in session['filter_items']) else '' }}
+                    {% endif %}
+            >
                 <label >{{ station.nomStation }}</label><br>
 
             {% endfor %}
+        </div>
+        {% endif %}
 
-            <label for="min">Prix minium : </label>
-            <input type="number" id="filter_value_min" name="filter_value_min">
+        <div class="col">
+            <label for="min">Prix minium : </label><br>
+            <input type="number" id="filter_value_min" name="filter_value_min"
+            value="{% if session['filter_value_min'] %}{{ session['filter_value_min'] }}{% endif %}">
+            <br>
+            <label for="MAX">Prix maximum : </label><br>
+            <input type="number" id="filter_value_max"  name="filter_value_max"
+            value="{% if session['filter_value_max'] %}{{ session['filter_value_max'] }}{% endif %}"><br>
+            <input type="submit" value="Valider" name="Valider" >
+        </div>
 
-            <label for="MAX">Prix maximum : </label>
-            <input type="number" id="filter_value_max" name="filter_value_max"><br>
 
-
-            <input type="submit" value="Creer" name="Valider" >
 
 
         </fieldset>
@@ -35,11 +55,17 @@
 
 
 <div class="container-flex grille-card flex-row" style="">
-
+    {% if hotels | length >= 1 %}
     {% for hotel in hotels %}
 
-    <div class="card text-white bg-warning mb-3 container-flex flex-row " style="width: 25rem;">
-        <img class="card-img-top" src="" alt="">
+    <div class="card mb-2" style="width: 25rem;">
+
+                  {%  if hotel.image is not none %}
+                      <img style="width: auto"  class="card-img " style="width:40px;height:40px"  src="{{ url_for('static', filename = 'images/' + hotel['image']) }}"  alt="image  de {{ hotel.nomStation }}" >
+                  {% else %}
+                      <img    class="card-img img-fluid" style="width:40px;height:40px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="no image" >
+                  {% endif %}
+
         <div class="card-body">
 
             <h5 class="card-title">{{ hotel.nomHotel }}</h5>
@@ -60,7 +86,12 @@
 
 </div>
 
+
     {% endfor %}
+{% else %}
+        <h2>Il n'y a aucun hotel corespondant au filtre</h2>
+
+    {% endif %}
 
 
 </div>
