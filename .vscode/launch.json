@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Revision",
+            "request": "launch",
+            "mainClass": "Revision",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
+            "name": "Launch DemoPixmap",
+            "request": "launch",
+            "mainClass": "DemoPixmap",
+            "projectName": "CoursIutBM_a93c7623"
+        },
+        {
+            "type": "java",
             "name": "Launch Hello",
             "request": "launch",
             "mainClass": "Hello",

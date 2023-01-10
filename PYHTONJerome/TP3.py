@@ -1,5 +1,8 @@
 #-----------------------isPremier(n)--------------
 
+from math import *
+
+
 def isPrime(n):
     if n == 2:
         return True
@@ -58,9 +61,54 @@ def decomposition(n):
             d += 2
 
     return tab + [n]
-n=20
-for i in range(10**n,10**n+100):
-    print(i)
-    print(decomposition(i))
+
+#test decomposition
+# n=20
+# for i in range(10**n,10**n+100):
+#     print(i)
+#     print(decomposition(i))
 
 
+#------racine(n)--------------
+#Revoie deux entiers a et b tels que √n = a √b, avec a maximal et b minimal (simplicateur de racines carrées).
+
+
+def racine(n):
+   a=1
+   b=n
+  
+   if n==1:
+        return a,b
+   
+   while b%4 == 0:
+        b//=4
+        a *=2
+   
+   d=3
+   while (d*d) <= b :
+        if b%(d*d) == 0:
+            b//=d*d
+            a*=d
+        else:
+            d+=2
+
+   return a,b
+
+
+print(racine(25419680))
+print(racine(36))
+
+
+#----------------------pgcd(n)---------------------
+#Renvoie le pgcd de deux entiers a et b
+def euclide(a,b):
+    if a < b:
+        a,b = b,a
+    r = 1
+    while r != 0:
+        r = a % b
+        a = b
+        b = r
+    return a
+
+print(euclide(10**1000000+5990,10**1000000+42832))

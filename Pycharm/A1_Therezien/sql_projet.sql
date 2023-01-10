@@ -1,6 +1,6 @@
--- mysql --user=ttherezi  --password=8060 --host=localhost --database=BDD_ProjetStation < sql_projet.sql
+-- mysql --user=ttherezi  --password=8060 --host=localhost --database=BDD_ttherezi < sql_projet.sql
 
-Create DATABASE if not EXISTS BDD_ProjetStation;
+
 
 
 DROP TABLE IF EXISTS hotel;
@@ -56,10 +56,8 @@ VALUES  (NULL, 'Le Saint joseph', 16, 2, 51.5,'2017-02-03', 'le-saint-joseph.jpg
 
 select * from station;
 
-
-
-select nom_station, avg(2*prix_base_chambre), count(id_hotel) from station
+select nom_station, round(avg(h.prix_base_chambre),2) as moyenne, count(h.id_hotel) as quantite from station
 left join hotel h on station.id_station = h.station_id
 group by  nom_station
-
-select
+order by nom_station
+;

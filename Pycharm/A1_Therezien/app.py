@@ -9,10 +9,10 @@ app.secret_key = 'une cle(token) : grain de sel(any random string)'
 def get_db():
     if 'db' not in g:
         g.db = pymysql.connect(
-            host="localhost",
+            host="serveurmysql.iut-bm.univ-fcomte.fr",
             user="ttherezi",
-            password="8060",
-            database="BDD_ProjetStation",
+            password="0806",
+            database="BDD_ttherezi",
             charset='utf8mb4',  # 2 attributs à ajouter
             cursorclass=pymysql.cursors.DictCursor  # 2 attributs à ajouter
         )
@@ -365,6 +365,59 @@ def valid_edit_hotels():
 
 
 
+@app.route('/hotel/filtre',methods=['GET'])
+def filtre_hotel():
+
+    mycursor = get_db().cursor()
+    sql = "SELECT id_hotel as id," \
+          "nom_hotel as nomHotel," \
+          "nombre_chambre as nombreChambre ," \
+          "categorie," \
+          "prix_base_chambre as prixBaseChambre," \
+          "date_creation as dateCreation ," \
+          "photo as image,"  \
+          "station_id FROM hotel "
+
+    list_param = []
+    condition_and = " "
+
+    if 'filter_word' in session or 'filter_value_min' in session \
+            or 'filter_value_max' in session or 'filter_items' in session :
+        sql = sql + " WHERE "
+    if 'filter_word' in session :
+        sql = sql + " nom_hotel LIKE %s "
+        recherche = "%" + session['filter_word'] + "%"
+        list_param.append(recherche)
+        condition_and = " AND "
+    if 'filter_value_min' in session or 'filter_value_max' in session :
+        sql = sql + condition_and + "prix_base_chambre BETWEEN %s AND %s "
+        list_param.append(session['filter_value_min'])
+        list_param.append(session['filter_value_max'])
+        condition_and = " AND "
+    if "filter_items" in session :
+        sql = sql + condition_and + "("
+        last_item = session['filter_items'][-1]
+        for item in session['filter_items']:
+            sql = sql + " station_id = %s "
+            if last_item != item:
+                sql = sql + " or "
+            list_param.append(item)
+        sql = sql + ")"
+    tuple_sql = tuple(list_param)
+    print(sql)
+    print(tuple_sql)
+
+    mycursor.execute(sql,tuple_sql)
+    hotels = mycursor.fetchall()
+    sql = "SELECT id_station as id, " \
+          " nom_station as nomStation, " \
+          " altitude as altitude FROM station ;"
+    mycursor.execute(sql)
+    stations = mycursor.fetchall()
+    return render_template('hotels/filtre_hotel.html',
+                           hotels=hotels, stations=stations)
+
+
 @app.route ('/hotel/filtre', methods=['POST'])
 def filtre_hotels_valid():
 
@@ -419,59 +472,6 @@ def filtre_hotels_valid():
 
 
 
-@app.route('/hotel/filtre',methods=['GET'])
-def filtre_hotel():
-
-    mycursor = get_db().cursor()
-    sql = "SELECT id_hotel as id," \
-          "nom_hotel as nomHotel," \
-          "nombre_chambre as nombreChambre ," \
-          "categorie," \
-          "prix_base_chambre as prixBaseChambre," \
-          "date_creation as dateCreation ," \
-          "photo as image,"  \
-          "station_id FROM hotel "
-
-    list_param = []
-    condition_and = " "
-
-    if 'filter_word' in session or 'filter_value_min' in session \
-            or 'filter_value_max' in session or 'filter_items' in session :
-        sql = sql + " WHERE "
-    if 'filter_word' in session :
-        sql = sql + " nom_hotel LIKE %s "
-        recherche = "%" + session['filter_word'] + "%"
-        list_param.append(recherche)
-        condition_and = " AND "
-    if 'filter_value_min' in session or 'filter_value_max' in session :
-        sql = sql + condition_and + "prix_base_chambre BETWEEN %s AND %s "
-        list_param.append(session['filter_value_min'])
-        list_param.append(session['filter_value_max'])
-        condition_and = " AND "
-    if "filter_items" in session :
-        sql = sql + condition_and + "("
-        last_item = session['filter_items'][-1]
-        for item in session['filter_items']:
-            sql = sql + " station_id = %s "
-            if last_item != item:
-                sql = sql + " or "
-            list_param.append(item)
-        sql = sql + ")"
-    tuple_sql = tuple(list_param)
-    print(sql)
-    print(tuple_sql)
-
-    mycursor.execute(sql,tuple_sql)
-    hotels = mycursor.fetchall()
-    sql = "SELECT id_station as id, " \
-          " nom_station as nomStation, " \
-          " altitude as altitude FROM station ;"
-    mycursor.execute(sql)
-    stations = mycursor.fetchall()
-    return render_template('hotels/filtre_hotel.html',
-                           hotels=hotels, stations=stations)
-
-
 @app.route('/hotel/filtre_suppr',methods=['GET'])
 def filtre_hotel_suppr():
     session.pop('filter_word', None)
@@ -485,10 +485,10 @@ def filtre_hotel_suppr():
 @app.route('/hotel/etat_show',methods=['GET'])
 def show_hotel_etat():
     mycursor = get_db().cursor()
-    sql = "select nom_station, round(avg(h.prix_base_chambre),2) as moyenne, count(h.id_hotel) as quantite from station " \
+    sql = "select  nom_station, round(avg(h.prix_base_chambre),2) as moyenne, count(h.id_hotel) as quantite from station " \
           "left join hotel h on station.id_station = h.station_id " \
           "group by  nom_station " \
-          "order by id_station ;"
+          "order by nom_station ;"
     mycursor.execute(sql)
     etat1 = mycursor.fetchall()
 

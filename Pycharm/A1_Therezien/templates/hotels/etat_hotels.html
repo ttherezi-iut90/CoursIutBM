@@ -23,12 +23,16 @@
         {% for ligne in etat1 %}
         <tr>
             <td>{{ ligne.nom_station }}</td>
-            <td {% if ligne.moyenne == None %} style="color: Red" >Valeur inconnue {% else %} >{{ ligne.moyenne }}{% endif %}</td>
+            <td style="color: Red" > {% if ligne.moyenne == None %} Valeur inconnue {% else %} {{ ligne.moyenne }}{% endif %}</td>
             <td{% if ligne.quantite == 0 %} style="color: Red" >Pas d'hotel{% else %} >{{ ligne.quantite }}{% endif %}</td>
         </tr>
         {% endfor %}
-    {% endif %}
 
+        {% else %}
+
+            <td>Il n'y a plus de station disponible pour afficher un etat</td>
+
+    {% endif %}
 
     </table>
 {% endblock %}
