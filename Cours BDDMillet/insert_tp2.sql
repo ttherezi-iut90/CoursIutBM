@@ -1,0 +1,46 @@
+INSERT INTO CLIENT VALUES (1,'CHAILLET','Belfort'),(2,'COTTARD','Belfort'),
+                            (3,'DAROSEY','Essert'),(4,'DECOCK','Belfort'),
+                            (5,'DIRAND','Valdoie'),(6,'DUGUET','Belfort'),
+                            (7,'Goerig','Walheim'),(8,'JAOUEN','Sevenans'),
+                            (9,'LAMOTTE','Belfort'),(10,'METTEY','Belfort'),
+                            (11,'MOLIN','Belfort'),
+                            (13,'PAUTOT','Belfort'),(14,'PETIT','Belfort'),
+                            (15,'Rato','Besancon'),(16,'SALVI','Offemont'),
+                            (17,'TERRAT','Belfort'),(18,'Walter','Bretten');
+
+INSERT INTO ARTICLE VALUES (1,'Gâteaux chocolat ( pâtisserie)',5.25),
+                             (2,'gâteau fraise (pâtisserie) ',5.25),
+                             (3,'Mouchoir ( hygiène)',2.54),
+                             (4,'Coca cola ( boisson )',1.52),
+                             (5,'Salade ( légume ) ',2.00),
+                             (6,'Choux ( légume ) ',2.50),
+                             (7,'Pomme de terre ( légume ) ',1.50),
+                             (8,'Tomate ( légume ) ',1.50),
+                             (9,'Haricot ( légume ) ',6.50),
+                             (10,'Potiron ( légume ) ',3.00),
+                           (11,'Poireau ( légume ) ',1.50),
+                           (12,'Fenouil ( légume ) ',3.00),
+                           (13,'Pissenlit ( légume ) ',5.00),
+                           (14,'Petit pois ( légume ) ',6.00),
+                           (15,'Poivron ( légume ) ',3.00),
+                           (16,'Radis ( légume ) ',2.00),
+                           (17,'Pomme ( fruit ) ',3.00),
+                           (18,'Perrier ( 1L eau ) ',1.50),
+                           (19,'Vittel ( 1L eau ) ',1.00);
+
+
+INSERT INTO COMMANDE VALUES (1,'2019-04-11',3),(2,'2019-12-11',2),
+                              (3,'2020-01-28',4),(4,'2019-09-19',1),(5,'2018-04-11',3),
+                              (6,'2019-12-11',2),(7,'2019-03-28',4),(8,'2019-12-09',1),
+                              (9,'2018-04-11',3),(10,'2019-12-11',2);
+
+INSERT INTO LIGNE VALUES (1,4,12),(1,9,4),
+                           (1,12,4),(1,15,4),
+                           (2,3,6),(2,6,6),
+                           (2,7,6),(2,14,6),
+                           (3,1,3),(3,11,3),
+                           (3,12,3),(3,16,3),
+                           (4,2,27),(4,8,5),
+                           (4,10,5),(4,17,5),
+                           (5,12,4),(6,11,3),
+                           (7,8,5),(8,14,6);
